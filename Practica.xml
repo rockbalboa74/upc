@@ -1,0 +1,18 @@
+<Sysmon schemaversion="4.1">
+  <EventFiltering>
+    <ProcessCreate onmatch="include">
+      <User condition="contains">ieuser</User>
+    </ProcessCreate>
+    <NetworkConnect onmatch="include">
+      <DestinationPort condition="is">443</DestinationPort>
+      <Image condition="contains">iexplore.exe</Image>
+      <User condition="contains">ieuser</User>
+    </NetworkConnect>
+    <NetworkConnect onmatch="exclude">
+      <Image condition="contains">firefox</Image>
+      <Image condition="contains">MicrosoftEdge</Image>
+      <Image condition="contains">smartscreen</Image>
+      <Image condition="contains">chrome.exe</Image>
+    </NetworkConnect>
+  </EventFiltering>
+</Sysmon>
